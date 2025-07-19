@@ -35,7 +35,6 @@ def test_merkle_distributor(tmpdir: local) -> None:
     idl_path = Path("tests/idls/merkle_distributor.json")
     client_gen(idl_path, out_dir, "placeholder")
 
-
 def test_null_err_when_cpi_fails() -> None:
     to_dump = {
         "jsonrpc": "2.0",

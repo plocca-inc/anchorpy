@@ -2,7 +2,8 @@ import json
 
 import pytest
 from anchorpy import Coder
-from anchorpy_core.idl import Idl
+from anchorpy_idl import Idl
+
 
 
 @pytest.mark.unit
