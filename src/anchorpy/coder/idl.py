@@ -173,14 +173,18 @@ def _typedef_layout_without_field_name(
     typedef_type = typedef.ty
     name = typedef.name
     if isinstance(typedef_type, IdlTypeDefStruct):
-        field_layouts = [_field_layout(field, types) for field in typedef_type.fields]
+        field_layouts = []
+        if typedef_type.fields == None:
+            field_layouts = []
+        else:
+            field_layouts = [_field_layout(field, types) for field in typedef_type.fields.fields]
         cstruct = CStruct(*field_layouts)
         datacls = _idl_typedef_ty_struct_to_dataclass_type(typedef_type, name)
         return _DataclassStruct(cstruct, datacls=datacls)
     elif isinstance(typedef_type, IdlTypeDefEnum):
         return _handle_enum_variants(typedef_type, types, name)
     elif isinstance(typedef_type, IdlTypeDefAlias):
-        return _type_layout(typedef_type.value, types)
+        return _type_layout(typedef_type.alias, types)
     unknown_type = typedef_type.kind
     raise ValueError(f"Unknown type {unknown_type}")
 
@@ -282,7 +286,7 @@ def _idl_typedef_ty_struct_to_dataclass_type_no_cache(
         Dataclass definition.
     """
     dataclass_fields = []
-    for field in typedef_type.fields:
+    for field in typedef_type.fields.fields if typedef_type.fields is not None else []:
         field_name = snake(field.name)
         field_name_to_use = f"{field_name}_" if field_name in kwlist else field_name
         dataclass_fields.append(

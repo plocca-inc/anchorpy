@@ -11,6 +11,9 @@ from anchorpy_idl import (
     IdlTypeDef,
     IdlTypeDefStruct,
     IdlSerializationSimple,
+IdlDefinedFieldsNamed,
+IdlDefinedFieldsTuple
+
 )
 from construct import Adapter, Bytes, Construct, Sequence, Switch
 from pyheck import snake
@@ -34,14 +37,14 @@ def _event_discriminator(name: str) -> bytes:
 def _event_layout(event: IdlEvent, idl: Idl) -> Construct:
     evType =find_type_by_name(event.name,idl.types)
     if isinstance(evType.ty,IdlTypeDefStruct):
-        evFields = evType.ty.fields
+        evFields = evType.ty.fields.fields
         event_type_def = IdlTypeDef(
             name=event.name,
             docs=[],
             ty=IdlTypeDefStruct(
-                fields=[
+                IdlDefinedFieldsNamed(fields=[
                     IdlField(name=snake(f.name), docs=[], ty=f.ty) for f in evFields
-                ],
+                ]),
             ),
             generics=[],
             repr=None,

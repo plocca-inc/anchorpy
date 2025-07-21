@@ -1,6 +1,7 @@
 """Common utilities for encoding and decoding."""
 from hashlib import sha256
 from typing import Dict, Union
+from anchorpy.coder.idl import find_type_by_name
 
 from anchorpy_idl import (
     Idl,
@@ -119,14 +120,15 @@ def _account_size(idl: Idl, idl_account: IdlTypeDef) -> int:
     Returns:
         Account size.
     """
-    idl_account_type = idl_account.ty
+    accTy = find_type_by_name(idl_account.name,idl.types).ty
+    idl_account_type = accTy
     if isinstance(idl_account_type, IdlTypeDefEnum):
         variant_sizes = (
             _variant_size(idl, variant) for variant in idl_account_type.variants
         )
         return max(variant_sizes) + 1
     if isinstance(idl_account_type, IdlTypeDefAlias):
-        return _type_size(idl, idl_account_type.value)
-    if idl_account_type.fields is None:
+        return _type_size(idl, accTy.value)
+    if accTy.fields is None:
         return 0
-    return sum(_type_size(idl, f.ty) for f in idl_account_type.fields)
+    return sum(_type_size(idl, f.ty) for f in accTy.fields.fields)
