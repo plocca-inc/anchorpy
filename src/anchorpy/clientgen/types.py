@@ -10,8 +10,6 @@ from anchorpy_idl import (
     IdlType,
     IdlTypeDefAlias,
     IdlTypeDefStruct,
-    #IdlTypeDefinitionTyAlias,
-    #IdlTypeDefinitionTyStruct,
 )
 from autoflake import fix_code
 from black import FileMode, format_str
@@ -133,7 +131,7 @@ def gen_types_code(idl: Idl, out: Path) -> dict[Path, str]:
                 ),
             )
         elif isinstance(ty_type, IdlTypeDefStruct):
-            body = gen_struct(idl, ty_name, ty_type.fields.fields)
+            body = gen_struct(idl, ty_name, ty_type.fields)
         else:
             body = gen_enum(idl, ty_name, ty_type.variants)
         code = str(Collection([ANNOTATIONS_IMPORT, *relative_import_container, body]))
@@ -185,7 +183,7 @@ def gen_struct(idl: Idl, name: str, fields: list[IdlField]) -> Collection:
         )
         from_decoded_item_val = _field_from_decoded(
             idl=idl,
-            ty=IdlField(name=snake(field.name), docs=[], ty=field.ty),
+            ty=IdlField(name=snake(field.name), docs=None, ty=field.ty),
             val_prefix="obj.",
             types_relative_imports=True,
         )
@@ -299,7 +297,7 @@ def _make_named_field_record(
             named_field_name,
             _field_from_decoded(
                 idl=idl,
-                ty=IdlField(f'val["{named_field_name}"]', docs=[], ty=named_field.ty),
+                ty=IdlField(f'val["{named_field_name}"]', docs=None, ty=named_field.ty),
                 types_relative_imports=True,
                 val_prefix="",
             ),
@@ -334,7 +332,7 @@ def _make_unnamed_field_record(
     elem_name = f"value[{index}]"
     encodable = _field_to_encodable(
         idl=idl,
-        ty=IdlField(f"[{index}]", docs=[], ty=unnamed_field),
+        ty=IdlField(f"[{index}]", docs=None, ty=unnamed_field),
         val_prefix="self.value",
         types_relative_imports=True,
         convert_case=False,
@@ -357,14 +355,14 @@ def _make_unnamed_field_record(
         ),
         json_value_element=_field_to_json(
             idl,
-            IdlField(elem_name, docs=[], ty=unnamed_field),
+            IdlField(elem_name, docs=None, ty=unnamed_field),
             "self.",
             convert_case=False,
         ),
         encodable_value_item=StrDictEntry(f"item_{index}", encodable),
         init_element_for_from_decoded=_field_from_decoded(
             idl=idl,
-            ty=IdlField(f'val["item_{index}"]', docs=[], ty=unnamed_field),
+            ty=IdlField(f'val["item_{index}"]', docs=None, ty=unnamed_field),
             val_prefix="",
             types_relative_imports=True,
         ),

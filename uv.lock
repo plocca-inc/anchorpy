@@ -1,10 +1,10 @@
 version = 1
-revision = 2
-requires-python = ">=3.9, <4"
+revision = 3
+requires-python = ">=3.9, <3.14"
 
 [[package]]
 name = "anchorpy"
-version = "0.21.0"
+version = "0.32.1"
 source = { editable = "." }
 dependencies = [
     { name = "anchorpy-idl" },
@@ -50,7 +50,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "anchorpy-idl", directory = "../anchorpy-idl2" },
+    { name = "anchorpy-idl", git = "https://github.com/plocca-inc/anchorpy-idl.git?rev=anchor-0.32.1" },
     { name = "autoflake", marker = "extra == 'cli'", specifier = "~=1.4" },
     { name = "based58", specifier = ">=0.1.1,<0.2" },
     { name = "black", marker = "extra == 'cli'", specifier = ">=22.3.0,<23" },
@@ -89,13 +89,10 @@ dev = [
 [[package]]
 name = "anchorpy-idl"
 version = "0.1.0"
-source = { directory = "../anchorpy-idl2" }
+source = { git = "https://github.com/plocca-inc/anchorpy-idl.git?rev=anchor-0.32.1#f4296b485be6f45719344ddd6d71ac3b8b2951a7" }
 dependencies = [
     { name = "jsonalias" },
 ]
-
-[package.metadata]
-requires-dist = [{ name = "jsonalias", specifier = "==0.1.1" }]
 
 [[package]]
 name = "anyio"
