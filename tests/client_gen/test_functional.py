@@ -144,7 +144,7 @@ def test_json() -> None:
         ),
         enum_field=NoFields(),
     )
-    enum_field1 = Unnamed(
+    enum_field_1 = Unnamed(
         (
             False,
             157,
@@ -154,7 +154,7 @@ def test_json() -> None:
             ),
         )
     )
-    enum_field2 = Named(
+    enum_field_2 = Named(
         NamedValue(
             bool_field=False,
             u8_field=77,
@@ -164,7 +164,7 @@ def test_json() -> None:
             ),
         )
     )
-    enum_field3 = Struct(
+    enum_field_3 = Struct(
         (
             BarStruct(
                 some_field=False,
@@ -195,10 +195,10 @@ def test_json() -> None:
         option_struct_field=option_struct_field,
         struct_field=struct_field,
         array_field=[True, False],
-        enum_field1=enum_field1,
-        enum_field2=enum_field2,
-        enum_field3=enum_field3,
-        enum_field4=NoFields(),
+        enum_field_1=enum_field_1,
+        enum_field_2=enum_field_2,
+        enum_field_3=enum_field_3,
+        enum_field_4=NoFields(),
     )
     state_json = state.to_json()
     expected = {
@@ -291,7 +291,7 @@ def test_json() -> None:
             },
         },
         "array_field": [True, False],
-        "enum_field1": {
+        "enum_field_1": {
             "kind": "Unnamed",
             "value": (
                 False,
@@ -302,7 +302,7 @@ def test_json() -> None:
                 },
             ),
         },
-        "enum_field2": {
+        "enum_field_2": {
             "kind": "Named",
             "value": {
                 "bool_field": False,
@@ -313,7 +313,7 @@ def test_json() -> None:
                 },
             },
         },
-        "enum_field3": {
+        "enum_field_3": {
             "kind": "Struct",
             "value": (
                 {
@@ -322,7 +322,7 @@ def test_json() -> None:
                 },
             ),
         },
-        "enum_field4": {
+        "enum_field_4": {
             "kind": "NoFields",
         },
     }
