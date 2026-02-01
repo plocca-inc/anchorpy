@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from anchorpy import Idl, Program
+from anchorpy import Idl, Program, Provider
 from solders.pubkey import Pubkey
 
 
@@ -12,7 +12,7 @@ def test_idls() -> None:
         idl = Idl.from_json(raw)
         idls.append(idl)
         if "spl_token" not in str(path):
-            program = Program(idl, Pubkey.default())
+            program = Program(idl, Pubkey.default(), Provider.readonly())
             programs.append(program)
     assert idls
 
