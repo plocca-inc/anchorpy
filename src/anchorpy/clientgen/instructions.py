@@ -1,13 +1,11 @@
 from pathlib import Path
-from typing import Optional, Union, cast
+from typing import Optional, cast
 
 from anchorpy_idl import (
     Idl,
     IdlAccountItem,
     IdlInstructionAccounts,
     IdlSeedConst,
-    IdlTypeArray,
-    IdlTypeSimple,
 )
 from autoflake import fix_code
 from black import FileMode, format_str
@@ -42,7 +40,6 @@ from anchorpy.clientgen.genpy_extension import (
     TypedParam,
 )
 from anchorpy.coder.common import _sighash
-from anchorpy.coder.idl import FIELD_TYPE_MAP
 
 CONST_ACCOUNTS = {
     "associated_token_program": "ASSOCIATED_TOKEN_PROGRAM_ID",

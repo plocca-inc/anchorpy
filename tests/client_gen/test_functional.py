@@ -2,8 +2,6 @@ import json
 from filecmp import dircmp
 from pathlib import Path
 
-from anchorpy.cli import client_gen
-from py.path import local
 from solana.rpc.core import RPCException
 from solders.pubkey import Pubkey
 from solders.rpc.errors import SendTransactionPreflightFailureMessage
