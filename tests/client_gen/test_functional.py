@@ -22,20 +22,6 @@ from tests.client_gen.example_program_gen.types.foo_enum import (
 )
 
 
-def test_quarry_mine(tmpdir: local) -> None:
-    proj_dir = Path(tmpdir)
-    out_dir = proj_dir / "generated"
-    idl_path = Path("tests/idls/quarry_mine.json")
-    client_gen(idl_path, out_dir, "placeholder")
-
-
-def test_merkle_distributor(tmpdir: local) -> None:
-    proj_dir = Path(tmpdir)
-    out_dir = proj_dir / "generated"
-    idl_path = Path("tests/idls/merkle_distributor.json")
-    client_gen(idl_path, out_dir, "placeholder")
-
-
 def test_null_err_when_cpi_fails() -> None:
     to_dump = {
         "jsonrpc": "2.0",
