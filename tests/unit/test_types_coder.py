@@ -5,7 +5,6 @@ from anchorpy import Coder
 from anchorpy_idl import Idl
 
 
-
 @pytest.mark.unit
 def test_can_encode_and_decode_user_defined_types():
     """Test that the TypesCoder can encode and decode user-defined types."""

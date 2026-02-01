@@ -2,7 +2,6 @@ from pathlib import Path
 
 from anchorpy import Idl
 from anchorpy.clientgen.instructions import gen_accounts
-from anchorpy.clientgen.types import gen_struct
 from genpy import Suite
 
 

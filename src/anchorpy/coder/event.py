@@ -7,7 +7,6 @@ from anchorpy_idl import (
     IdlEvent,
 )
 from construct import Adapter, Bytes, Construct, Sequence, Switch
-from pyheck import snake
 
 from anchorpy.coder.idl import _typedef_layout
 from anchorpy.program.common import Event
