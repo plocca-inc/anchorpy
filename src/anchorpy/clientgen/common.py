@@ -7,6 +7,7 @@ from anchorpy_idl import (
     IdlField,
     IdlType,
     IdlTypeArray,
+    IdlTypeDef,
     IdlTypeDefined,
     IdlTypeDefAlias,
     IdlTypeDefStruct,
@@ -32,6 +33,22 @@ INT_TYPES = {
 }
 FLOAT_TYPES = {IdlTypeSimple.F32, IdlTypeSimple.F64}
 NUMBER_TYPES = INT_TYPES | FLOAT_TYPES
+
+
+def _partition_idl_types(idl: Idl) -> tuple[list[IdlTypeDef], list[IdlTypeDef]]:
+    """Partition idl.types into (account_types, user_types).
+
+    `Idl.types` includes all types, making it necessary to separate account types from
+    user types.
+    """
+    if not idl.accounts:
+        return [], list(idl.types)
+
+    account_names = {acc.name for acc in idl.accounts}
+    return (
+        [t for t in idl.types if t.name in account_names],
+        [t for t in idl.types if t.name not in account_names],
+    )
 
 
 def _fields_interface_name(type_name: str) -> str:
