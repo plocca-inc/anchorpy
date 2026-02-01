@@ -1,16 +1,14 @@
 """This module provides `AccountsCoder` and `_account_discriminator`."""
 from hashlib import sha256
-from typing import Any, Tuple,Optional
+from typing import Any, Tuple
 
-from anchorpy_idl import Idl,IdlTypeDef
-from borsh_construct.core import Option
+from anchorpy_idl import Idl
 from construct import Adapter, Bytes, Container, Sequence, Switch
 
-from anchorpy.coder.idl import _typedef_layout,find_type_by_name
+from anchorpy.coder.idl import _typedef_layout
 from anchorpy.program.common import NamedInstruction as AccountToSerialize
 
 ACCOUNT_DISCRIMINATOR_SIZE = 8  # bytes
-
 
 
 class AccountsCoder(Adapter):
@@ -21,22 +19,13 @@ class AccountsCoder(Adapter):
 
         Args:
             idl: The parsed IDL object.
-
+        """
         self._accounts_layout = {
-            account.name: _typedef_layout(
-                _find_type_by_name(account.name, idl.types),
-                idl.types,
-                account.name
+            acc.name: _typedef_layout(
+                next(t for t in idl.types if t.name == acc.name),
+                idl.types, acc.name
             )
-            for account in idl.accounts
-        }"""
-        self._accounts_layout = {
-            account.name: _typedef_layout(
-                typedef=find_type_by_name(account.name, idl.types),  # Use account as fallback if no type found
-                types=idl.types,  # Pass the full list of type definitions
-                field_name=account.name  # Use account name as field identifier
-            )
-            for account in idl.accounts  # Iterate through all accounts in idl
+            for acc in idl.accounts
         }
         self.acc_name_to_discriminator = {
             acc.name: _account_discriminator(acc.name) for acc in idl.accounts

@@ -106,7 +106,6 @@ def client_gen(
     ),
 ):
     """Generate Python client code from the specified anchor IDL."""
-
     idl_obj = Idl.from_json(idl.read_text())
     if program_id is None:
         idl_metadata = idl_obj.metadata

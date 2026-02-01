@@ -1,7 +1,7 @@
 """This module deals with generating program instructions."""
 from typing import Any, Callable, Sequence, Tuple, cast
 
-from anchorpy_idl import IdlAccount, IdlAccountItem, IdlInstruction,IdlInstructionAccounts
+from anchorpy_idl import IdlAccount, IdlAccountItem, IdlInstruction, IdlInstructionAccount, IdlInstructionAccounts
 from pyheck import snake
 from solders.instruction import AccountMeta, Instruction
 from solders.pubkey import Pubkey
@@ -105,7 +105,7 @@ def _accounts_array(
             acc_arr = _accounts_array(rpc_accs, acc.accounts)
             accounts_ret.extend(acc_arr)
         else:
-            account: IdlAccount = acc
+            account: IdlInstructionAccount = acc
             single_account = cast(Pubkey, ctx[snake(account.name)])
             accounts_ret.append(
                 AccountMeta(
