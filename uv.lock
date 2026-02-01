@@ -50,7 +50,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "anchorpy-idl", specifier = ">=0.1.0" },
+    { name = "anchorpy-idl", git = "https://github.com/plocca-inc/anchorpy-idl.git?rev=anchor-0.32.1" },
     { name = "autoflake", marker = "extra == 'cli'", specifier = "~=1.4" },
     { name = "based58", specifier = ">=0.1.1,<0.2" },
     { name = "black", marker = "extra == 'cli'", specifier = ">=22.3.0,<23" },
@@ -89,22 +89,9 @@ dev = [
 [[package]]
 name = "anchorpy-idl"
 version = "0.1.0"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/plocca-inc/anchorpy-idl.git?rev=anchor-0.32.1#b879bb59bd14814ac3f9768bf4de0a2449228bd9" }
 dependencies = [
     { name = "jsonalias" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/96/14/cc061cc849a3e2306821f2179b40aa9c9cd9d6b263f1898099f0dc22744d/anchorpy_idl-0.1.0.tar.gz", hash = "sha256:3c92172764e6c24c160caa73fc6e25c3d6ce6798bda9226b883f4f3d35ba469f", size = 29896, upload-time = "2025-01-22T22:09:41.808Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/62/35/6116575d86335bf92a658d285692247104fc371385c5eecdcc9b69821897/anchorpy_idl-0.1.0-cp37-abi3-macosx_10_9_x86_64.macosx_11_0_arm64.macosx_10_9_universal2.whl", hash = "sha256:316ff5837b4014aa8f59ec8f0fef428b360664892c17b158504a3879adb7d1e9", size = 1325755, upload-time = "2025-01-22T22:09:24.953Z" },
-    { url = "https://files.pythonhosted.org/packages/f1/57/38099e33398ec971e3471e9f748c35c957909f702ae5d61ece5170005a14/anchorpy_idl-0.1.0-cp37-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7b9e7fcadb771d731d599f9c12e48084de791e68adfefa3baf991535e1b6fecb", size = 698831, upload-time = "2025-01-22T22:09:27.325Z" },
-    { url = "https://files.pythonhosted.org/packages/c9/de/7d03659a429cc87d5dcaa0cb484b0d4313612ed4152b46f61aa5fdfc531e/anchorpy_idl-0.1.0-cp37-abi3-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:757529723dc3be4a3f610dd89397e8f2857d08ec66e7986715fd1b7c3df0fea5", size = 695062, upload-time = "2025-01-22T22:09:29.372Z" },
-    { url = "https://files.pythonhosted.org/packages/58/b6/f9fd6d69799d1eb4f946ef510b59812d5e2ef1c44868f69c29855895e527/anchorpy_idl-0.1.0-cp37-abi3-manylinux_2_17_ppc64.manylinux2014_ppc64.whl", hash = "sha256:b43af6c6e9e6bda4136db30d61cf6784ed02cc3ead0f49bbdd971e934d63aa85", size = 791772, upload-time = "2025-01-22T22:09:31.491Z" },
-    { url = "https://files.pythonhosted.org/packages/56/91/5c4f08617ca0615b89b9320d7870b76dae522dbae9e21530148bdfc8c7ff/anchorpy_idl-0.1.0-cp37-abi3-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:73ad4589335fc3ce2e4c1cb45cac59f1077ae1806d872f1eb14db8ec27d63ee1", size = 883004, upload-time = "2025-01-22T22:09:32.871Z" },
-    { url = "https://files.pythonhosted.org/packages/41/1f/70aebff5438a8f6090d872792d26c389e63b23cab9bc37ecd7d1ac51827e/anchorpy_idl-0.1.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:79e33b98b5892a426fa70cba9c9b3ab0e08e6b8bb528c370d2b27f101bdfc32f", size = 736640, upload-time = "2025-01-22T22:09:34.254Z" },
-    { url = "https://files.pythonhosted.org/packages/8b/37/08b0ee9a4d2e8a222ecf4b78f5a9494c84f424794111ddf14e027d15a3c5/anchorpy_idl-0.1.0-cp37-abi3-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:db64d7be369da1800554ed9922b38de1c51bce77e0b563094da6622383a2978e", size = 752144, upload-time = "2025-01-22T22:09:35.552Z" },
-    { url = "https://files.pythonhosted.org/packages/9c/25/10a445d4deb2488e5d3739d8bf569983db2ee74779009c19302766475fe5/anchorpy_idl-0.1.0-cp37-abi3-musllinux_1_2_i686.whl", hash = "sha256:6e04109cf39676058b1320e5fddde2249b0a2080c4c28d4a94cc27ff084aa217", size = 896247, upload-time = "2025-01-22T22:09:36.909Z" },
-    { url = "https://files.pythonhosted.org/packages/9e/a0/daaa41c9c456acfeea241c5aba050700d6800082fbbed8ea7ac29c56835c/anchorpy_idl-0.1.0-cp37-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:ef807555536789d45245817f0290430bfb32503f91503ffffbe33769ecdd3936", size = 897993, upload-time = "2025-01-22T22:09:39.167Z" },
-    { url = "https://files.pythonhosted.org/packages/77/3d/d7eacf67d9e7fe4a7bc4f29fa4470fc4e5ece72bfb043951a7077ed89a43/anchorpy_idl-0.1.0-cp37-abi3-win_amd64.whl", hash = "sha256:0901c96c047614cd9f3ac0ac5815cffe19d4e4e362214ecc53c625b5bcb419db", size = 568777, upload-time = "2025-01-22T22:09:40.487Z" },
 ]
 
 [[package]]
