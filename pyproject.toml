@@ -14,7 +14,7 @@ dependencies = [
     "pyheck>=0.1.4,<0.2",
     "based58>=0.1.1,<0.2",
     "toml>=0.10.2,<0.11",
-    "anchorpy-idl @ git+https://github.com/plocca-inc/anchorpy-idl.git@anchor-0.32.1",
+    "anchorpy-idl @ git+https://github.com/plocca-inc/anchorpy-idl.git",
 ]
 
 [project.optional-dependencies]

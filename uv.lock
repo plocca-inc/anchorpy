@@ -50,7 +50,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "anchorpy-idl", git = "https://github.com/plocca-inc/anchorpy-idl.git?rev=anchor-0.32.1" },
+    { name = "anchorpy-idl", git = "https://github.com/plocca-inc/anchorpy-idl.git" },
     { name = "autoflake", marker = "extra == 'cli'", specifier = "~=1.4" },
     { name = "based58", specifier = ">=0.1.1,<0.2" },
     { name = "black", marker = "extra == 'cli'", specifier = ">=22.3.0,<23" },
@@ -89,7 +89,7 @@ dev = [
 [[package]]
 name = "anchorpy-idl"
 version = "0.1.0"
-source = { git = "https://github.com/plocca-inc/anchorpy-idl.git?rev=anchor-0.32.1#b879bb59bd14814ac3f9768bf4de0a2449228bd9" }
+source = { git = "https://github.com/plocca-inc/anchorpy-idl.git#907c2fa1b7fdba748cc78f1a3186e5c4ed5f8eb2" }
 dependencies = [
     { name = "jsonalias" },
 ]
