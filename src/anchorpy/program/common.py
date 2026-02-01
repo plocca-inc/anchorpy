@@ -4,6 +4,7 @@ from typing import Any, Dict, NamedTuple, Tuple, Union, cast
 
 from anchorpy_idl import (
     IdlAccountItem,
+    IdlAccounts,
     IdlInstruction,
 )
 from construct import Container

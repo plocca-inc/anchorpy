@@ -98,37 +98,18 @@ def init(
 def client_gen(
     idl: Path = typer.Argument(..., help="Anchor IDL file path"),
     out: Path = typer.Argument(..., help="Output directory."),
-    program_id: Optional[str] = typer.Option(
-        None, help="Optional program ID to be included in the code"
-    ),
     pdas: bool = typer.Option(
         False, "--pdas", help="Auto-generate PDAs where possible."
     ),
 ):
     """Generate Python client code from the specified anchor IDL."""
-
     idl_obj = Idl.from_json(idl.read_text())
-    if program_id is None:
-        idl_metadata = idl_obj.metadata
-        address_from_idl = (
-            idl_metadata["address"] if isinstance(idl_metadata, dict) else None
-        )
-        if address_from_idl is None:
-            typer.echo(
-                "No program ID found in IDL. Use the --program-id "
-                "option to set it manually."
-            )
-            raise typer.Exit(code=1)
-        else:
-            program_id_to_use = cast(str, address_from_idl)
-    else:
-        program_id_to_use = program_id
 
     typer.echo("generating package...")
     out.mkdir(exist_ok=True)
     (out / "__init__.py").touch()
     typer.echo("generating program_id.py...")
-    gen_program_id(program_id_to_use, out)
+    gen_program_id(idl_obj.address, out)
     typer.echo("generating errors.py...")
     gen_errors(idl_obj, out)
     typer.echo("generating instructions...")

@@ -34,10 +34,10 @@ def create_workspace(
     for file in idl_folder.iterdir():
         raw = file.read_text()
         idl = Idl.from_json(raw)
-        name = idl.name
+        name = idl.metadata.name
         program_id = Pubkey.from_string(localnet_programs[name])
         program = Program(idl, program_id, Provider.local(url))
-        result[idl.name] = program
+        result[name] = program
     return result
 
 

@@ -42,7 +42,8 @@ def _build_account(
     """
     accounts_fns = {}
     for idl_account in idl.accounts:
-        account_client = AccountClient(idl, idl_account, coder, program_id, provider)
+        acc_type = next(t for t in idl.types if t.name == idl_account.name)
+        account_client = AccountClient(idl, acc_type, coder, program_id, provider)
         accounts_fns[idl_account.name] = account_client
     return accounts_fns
 
